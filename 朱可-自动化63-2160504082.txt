@@ -1,0 +1,14 @@
+clear;  
+O = imread('Image A.jpg');
+K = imread('Image B.jpg'); 
+K1=imresize(K,[2736,3648],'bicubic');  
+cpselect(K1,O)  
+E1=[E0';ones(1,7)];  
+R1=[R0';ones(1,7)];  
+H=R1*(E1.')*inv((R1*R1.'))  
+tform=cp2tform(E0,R0,'affine');  
+K_out = imtransform(K1,tform);  
+subplot(2,1,1)
+imshow(K_out)  
+subplot(2,1,2)
+imshow(O)
